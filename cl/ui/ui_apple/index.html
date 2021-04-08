@@ -1,0 +1,49 @@
+<head>
+    <link rel="stylesheet" href="../global.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="../components/index.css" media="print" onload="this.media='all'" />
+</head>
+
+<body>
+    <div class='wrapper'>
+        <ui-frame style="width: 100%; height: 100%" title="BadApple" color="#000" bg-color="#ffe73a" qr draggable>
+            <div id="apple-render" style='background:black;color:white;white-space: break-spaces;font-size: 10px;'>
+            </div>
+        </ui-frame>
+    </div>
+    <script type="module" async src="../components/index.js"></script>
+    <script type="text/javascript">
+        function setup() {
+            const render = document.getElementById("apple-render");
+            if (!render) return;
+
+            const apple = new Audio("https://ams3.digitaloceanspaces.com/failcake/public/badapple/caw.mp3");
+            apple.autoplay = false;
+            apple.volume = 0.2;
+            apple.addEventListener("canplaythrough", (event) => {
+                window.queryUI({
+                    request: JSON.stringify({ event: 'ui_sound_ready' }),
+                    persistent: false,
+                    onSuccess: (response) => {
+                        apple.play(); // Start it
+                    },
+                    onFailure: (errcode, errmsg) => { },
+                });
+            });
+
+            apple.load();
+
+            // Listener
+            window.queryUI({
+                request: 'LISTENER_APPLE_DATA',
+                persistent: true,
+                onSuccess: (response) => {
+                    if (!render) return;
+                    render.innerText = JSON.parse(response).data;
+                },
+                onFailure: (errcode, errmsg) => { },
+            });
+        };
+
+        window.onload = setup;
+    </script>
+</body>
