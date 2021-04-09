@@ -1,8 +1,8 @@
 local apple = apple or {}
 apple.frames = {}
 apple.buffer = {}
-apple.width = 60
-apple.height = 40
+apple.width = 60 -- 128 -- 60
+apple.height = 40 -- 96 -- 40
 apple.frameRate = 15
 
 function parse(data)
@@ -18,7 +18,7 @@ function parse(data)
     apple.buffer = {}
     for y = 1, apple.height - 1 do
         for x = 1, apple.width - 1 do
-            apple.buffer[x.."-"..y] = true
+            apple.buffer[x.."-"..y] = false
         end
     end
 
@@ -55,22 +55,8 @@ function play()
         -- Render
         for y = 1, apple.height - 1 do
             for x = 1, apple.width - 1 do
-                local char = "⠀"
-
-                if getBuffer(x, y) then
-                    --[[
-
-                    char = "⠿"
-                    if not getBuffer(x + 1, y) then char = "⠸"
-                    elseif not getBuffer(x - 1, y) then char = "⠇"
-                    elseif not getBuffer(x, y - 1) then char = "⠤"
-                    elseif not getBuffer(x - 1, y - 1) then char = "⠠"
-                    elseif not getBuffer(x + 1, y + 1) then char = "⠁"
-                    elseif not getBuffer(x, y + 1) then char = "⠉" end]]--
-
-                    char = "#"
-                end
-
+                local char = "⠁"
+                if getBuffer(x, y) then char = "⠿" end
                 message = message .. char
             end
 
@@ -102,7 +88,8 @@ function Mod:onStateStart(state)
     if state ~= "ingame" then return end
 
     apple.panel = UI:createMenu("ui_apple")
-    apple.panel:setSize(332, 495)
+    apple.panel:setSize(405, 495)
+    --apple.panel:setSize(700, 700)
     apple.panel:setPos(50, 50)
     --apple.panel:setPos((UI:width() - 332) / 2,(UI:height() - 495) / 2)
     apple.panel:addEvent("ui_sound_ready", function(data)
