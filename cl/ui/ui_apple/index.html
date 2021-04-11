@@ -1,13 +1,13 @@
 <body>
     <div class='wrapper'>
-        <ui-frame style="width: 100%; height: 100%" title="BadApple" color="#000" bg-color="#ffe73a" draggable>
+        <ui-frame style="width: 100%; height: 100%" title="BadApple" color="#000" bg-color="#ffe73a" draggable onload='window.onLoad()'>
             <div id="apple-render" style='color:white;white-space: break-spaces;font-size: 10px;'>
             </div>
         </ui-frame>
     </div>
 
     <script type="text/javascript">
-        function setup() {
+        function onLoad() {
             const render = document.getElementById("apple-render");
             if (!render) return;
 
@@ -38,8 +38,5 @@
 
             apple.load();
         };
-
-        // Components loaded
-        window.scriptLoaded = () => { setup(); };
     </script>
 </body>
