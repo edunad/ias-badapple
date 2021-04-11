@@ -1,16 +1,11 @@
-<head>
-    <link rel="stylesheet" href="../global.css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="../components/index.css" media="print" onload="this.media='all'" />
-</head>
-
 <body>
     <div class='wrapper'>
-        <ui-frame style="width: 100%; height: 100%" title="BadApple" color="#000" bg-color="#ffe73a" qr draggable>
-            <div id="apple-render" style='background:black;color:white;white-space: break-spaces;font-size: 10px;'>
+        <ui-frame style="width: 100%; height: 100%" title="BadApple" color="#000" bg-color="#ffe73a" draggable>
+            <div id="apple-render" style='color:white;white-space: break-spaces;font-size: 10px;'>
             </div>
         </ui-frame>
     </div>
-    <script type="module" async src="../components/index.js"></script>
+
     <script type="text/javascript">
         function setup() {
             const render = document.getElementById("apple-render");
@@ -30,8 +25,6 @@
                 });
             });
 
-            apple.load();
-
             // Listener
             window.queryUI({
                 request: 'LISTENER_APPLE_DATA',
@@ -42,8 +35,11 @@
                 },
                 onFailure: (errcode, errmsg) => { },
             });
+
+            apple.load();
         };
 
-        window.onload = setup;
+        // Components loaded
+        window.scriptLoaded = () => { setup(); };
     </script>
 </body>

@@ -88,7 +88,7 @@ function Mod:onStateStart(state)
     if state ~= "ingame" then return end
 
     apple.panel = UI:createMenu("ui_apple")
-    apple.panel:setSize(405, 495)
+    apple.panel:setSize(408, 565)
     --apple.panel:setSize(700, 700)
     apple.panel:setPos(50, 50)
     --apple.panel:setPos((UI:width() - 332) / 2,(UI:height() - 495) / 2)
