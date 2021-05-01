@@ -5,7 +5,6 @@
     "preview": "./bad-cat.gif",
     "repo": "https://github.com/edunad/ias-badapple",
 	"tags": ["UI"],
-	"depends": ["2465826186"],
 	"ignore": [
 		".git",
 		"LICENSE",
