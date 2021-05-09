@@ -73,7 +73,7 @@ function stopAnimation()
     timer:destroy("badApple")
 end
 
-function Mod:init()
+function MOD:init()
     print("[bad-apple]: init")
 
     http:fetch("https://ams3.digitaloceanspaces.com/failcake/public/badapple/caw.txt", {METHOD = "GET"}, function(err, data)
@@ -83,19 +83,19 @@ function Mod:init()
     end)
 end
 
-function Mod:onLoad()
+function MOD:onLoad()
 	print("[bad-apple] LOAD")
 	resources:loadSound("content/apple.ogg")
 end
 
-function Mod:onStateStart(state)
+function MOD:onStateStart(state)
     if state ~= "ingame" then return end
 
     apple.sound = resources:getSound("content/apple.ogg")
     apple.sound.volume = 0.3
 	apple.sound:play()
 
-    apple.panel = UI:create("frame")
+    apple.panel = ui:create("frame")
 	apple.panel:setPos(50, 50)
 	apple.panel:setSize(390, 565)
 	apple.panel:setTitle("Bad apple")
@@ -106,7 +106,7 @@ function Mod:onStateStart(state)
 		if apple.sound and apple.sound:isValid() then apple.sound:stop() end
 	end)
 
-    apple.label = UI:create("label", apple.panel)
+    apple.label = ui:create("label", apple.panel)
 	apple.label:setFont("@/content/fonts/consola.ttf", 12)
 	apple.label:setPos(0, 17)
 	apple.label:setShadowColor(1, 1, 1)
@@ -117,7 +117,7 @@ function Mod:onStateStart(state)
     playAnimation()
 end
 
-function Mod:onStateEnd(state)
+function MOD:onStateEnd(state)
     if apple.panel and apple.panel:isValid() then apple.panel:remove() end
     if apple.sound and apple.sound:isValid() then apple.sound:stop() end
 end
