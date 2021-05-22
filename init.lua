@@ -88,7 +88,7 @@ function MOD:onLoad()
 	resources:loadSound("content/apple.ogg")
 end
 
-function MOD:onStateStart(state)
+function MOD:onStateEnter(state)
     if state ~= "ingame" then return end
 
     apple.sound = resources:getSound("content/apple.ogg")
@@ -117,7 +117,7 @@ function MOD:onStateStart(state)
     playAnimation()
 end
 
-function MOD:onStateEnd(state)
+function MOD:onStateLeave(state)
     if apple.panel and apple.panel:isValid() then apple.panel:remove() end
     if apple.sound and apple.sound:isValid() then apple.sound:stop() end
 end
