@@ -85,13 +85,13 @@ end
 
 function MOD:onLoad()
 	print("[bad-apple] LOAD")
-	--resources:loadSound("content/apple.ogg")
+	resources:preLoad("content/apple.ogg")
 end
 
 function MOD:onStateEnter(state)
     if state ~= "ingame" then return end
 
-    apple.sound = resources:getSound("apple.ogg")
+    apple.sound = resources:getSound("content/apple.ogg")
     apple.sound.volume = 0.3
 	apple.sound:play()
 
@@ -107,7 +107,7 @@ function MOD:onStateEnter(state)
 	end)
 
     apple.label = ui:create("label", apple.panel)
-	apple.label:setFont("@/content/fonts/consola.ttf", 12)
+	apple.label:setFont("@/fonts/consola.ttf", 12)
 	apple.label:setPos(0, 17)
 	apple.label:setShadowColor(Color:new(1, 1, 1))
 	apple.label:setColor(Color:new(255, 255, 255))
