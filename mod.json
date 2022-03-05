@@ -2,7 +2,7 @@
     "id": "bad-apple",
     "version": "0.0.1",
     "author": "FailCake",
-    "preview": "./bad-cat.gif",
+    "preview": "bad-cat.gif",
     "repo": "https://github.com/edunad/ias-badapple",
 	"tags": ["UI"],
 	"ignore": [
